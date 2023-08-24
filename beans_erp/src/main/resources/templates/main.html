@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>빈스 ERP</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background-color: #f0f0f0;
+        }
+        .login-btn {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        #welcomeText {
+            text-align: center;
+            padding-top: 100px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div></div>
+        <div>
+            <button class="login-btn" onclick="location.href='/login'">로그인</button>
+            <button class="login-btn" onclick="location.href='/register'">회원가입</button>
+        </div>
+    </div>
+
+    <div id="welcomeText">
+        <a href="https://www.naver.com/" target="_blank" id="welcomeLink">빈스 ERP에 오신 것을 환영합니다.</a>
+    </div>
+
+    <script>
+        // '빈스 ERP에 오신 것을 환영합니다.' 링크를 클릭하면 네이버로 이동
+        document.getElementById('welcomeLink').addEventListener('click', function() {
+            window.location.href = 'https://www.naver.com/';
+        });
+    </script>
+</body>
+</html>

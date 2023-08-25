@@ -1,7 +1,8 @@
-package com.beans.erp.controllers;
+package com.beans.erp.controller;
 
-import com.beans.erp.models.User;
-import com.beans.erp.repositories.UserRepository;
+import com.beans.erp.model.User;
+import com.beans.erp.repository.UserRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

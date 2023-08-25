@@ -1,7 +1,8 @@
-package com.beans.erp.repositories;
+package com.beans.erp.repository;
 
-import com.beans.erp.models.User;
 import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.beans.erp.model.User;
 
 public interface UserRepository extends JpaRepository<User, Long> {
 

@@ -1,4 +1,4 @@
-package com.beans.erp.controllers;
+package com.beans.erp.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

@@ -1,4 +1,4 @@
-package com.beans.erp.models;
+package com.beans.erp.model;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

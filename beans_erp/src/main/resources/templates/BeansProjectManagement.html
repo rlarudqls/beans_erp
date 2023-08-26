@@ -5,6 +5,60 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ERP 프로그램</title>
     <link rel="stylesheet" href="beans_erp.css">
+    <style>
+        /* 추가한 스타일 코드 */
+        main {
+            padding: 20px;
+            background-color: #f9f9f9;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+            border-radius: 5px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 10px;
+            border: 1px solid #ccc;
+            text-align: center;
+        }
+
+        th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
+
+        /* 모달 스타일 */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-content {
+            background-color: white;
+            width: 60%;
+            max-width: 600px;
+            margin: 100px auto;
+            padding: 20px;
+            border-radius: 5px;
+        }
+
+        .close {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 20px;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
     <div id="app">
@@ -25,22 +79,86 @@
                 </ul>
             </nav>
         </header>
-
-        <main>
-            <div id="content">
-                <p>메인 화면 내용</p>
-            </div>
-        </main>
-
-        <footer>
-            <p>&copy; 2023 beans_ERP 프로그램에 오신 것을 환영합니다.</p>
-        </footer>
+<h1>관리자가 아닐시 수정/삭제 불가</h1>
+    <div id="content">
+            <table border="1" id="projectTable">
+                <tr>
+                    <th>ID</th>
+                    <th>프로젝트 이름</th>
+                    <th>프로젝트 설명</th>
+                    <th>시작일</th>
+                    <th>종료일</th>
+                    <th>예산</th>
+                    <th>수정</th>
+                    <th>삭제</th>
+                </tr>
+            </table>
+        </div>
     </div>
 
-    <script>
-        const menuList = document.getElementById('menuList');
-        const content = document.getElementById('content');
+    <!-- 수정 모달 -->
+    <div id="editModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeEditModal()">&times;</span>
+            <h2>프로젝트 수정</h2>
+            <!-- 수정할 프로젝트 정보 입력 폼 -->
+            <!-- 예: 프로젝트 이름, 프로젝트 설명, 시작일, 종료일, 예산 등 -->
+            <button onclick="saveEditedProject()">저장</button>
+        </div>
+    </div>
 
+    <!-- 삭제 모달 -->
+    <div id="deleteModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeDeleteModal()">&times;</span>
+            <h2>프로젝트 삭제</h2>
+            <p>정말로 이 프로젝트를 삭제하시겠습니까?</p>
+            <button onclick="confirmDeleteProject()">확인</button>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2023 beans_ERP 프로그램에 오신 것을 환영합니다.</p>
+    </footer>
+
+    <script>
+        // 프로젝트 데이터 가져와서 테이블에 추가하는 함수
+        function renderProjects() {
+            fetch('/api/projects')
+                .then(response => response.json())
+                .then(data => {
+                    const projectTable = document.getElementById('projectTable');
+                    data.forEach(project => {
+                        const row = projectTable.insertRow();
+                        const idCell = row.insertCell(0);
+                        const projectNameCell = row.insertCell(1);
+                        const projectDescriptionCell = row.insertCell(2);
+                        const startDateCell = row.insertCell(3);
+                        const endDateCell = row.insertCell(4);
+                        const budgetCell = row.insertCell(5);
+                        const editCell = row.insertCell(6); // 수정 버튼 셀
+                        const deleteCell = row.insertCell(7); // 삭제 버튼 셀
+
+                        idCell.innerHTML = project.id;
+                        projectNameCell.innerHTML = project.projectName;
+                        projectDescriptionCell.innerHTML = project.projectDescription;
+                        startDateCell.innerHTML = project.startDate;
+                        endDateCell.innerHTML = project.endDate;
+                        budgetCell.innerHTML = project.budget;
+                        editCell.innerHTML = '<button onclick="editProject(' + project.id + ')">수정</button>'; // 수정 버튼 추가
+                        deleteCell.innerHTML = '<button onclick="deleteProject(' + project.id + ')">삭제</button>'; // 삭제 버튼 추가
+                    });
+                })
+                .catch(error => {
+                    console.error('Error loading project data:', error);
+                });
+        }
+
+        // 초기화 시 프로젝트 데이터 렌더링
+        renderProjects();
+
+        // 메뉴 클릭 이벤트 등록
+        const menuList = document.getElementById('menuList');
         menuList.addEventListener('click', (event) => {
             const clickedItem = event.target.dataset.page;
             if (clickedItem) {
@@ -49,30 +167,70 @@
             }
         });
 
+        // content 요소 참조 추가
+        const content = document.getElementById('content');
+
         function getPagePath(pageName) {
-            const pagePaths = {
-                '주문 관리': '/BeansOrderManagement',
-                '재고 및 물류': '/BeansInventoryLogistics',
-                '인력 및 인사': '/BeansHumanResources',
-                '회계 및 재무': '/BeansAccountingFinance',
-                '프로젝트 관리': '/BeansProjectManagement',
-                '프로젝트 생성': '/BeansProjectCreate',
-                '문서 관리': '/BeansDocumentManagement',
-                '알림': '/BeansNotifications',
-                '회원정보': '/BeansMemberInformation'
-            };
-            return pagePaths[pageName] || '';
+            // TODO: 페이지 경로 설정
         }
 
         function loadPage(pageURL) {
             fetch(pageURL)
                 .then(response => response.text())
                 .then(data => {
-                    content.innerHTML = data;
+                    content.innerHTML = data; // 수정된 부분
                 })
                 .catch(error => {
                     console.error('Error loading page:', error);
                 });
+        }
+      
+        // 수정 모달 열기
+        function openEditModal() {
+            const editModal = document.getElementById('editModal');
+            editModal.style.display = 'block';
+        }
+
+        // 수정 모달 닫기
+        function closeEditModal() {
+            const editModal = document.getElementById('editModal');
+            editModal.style.display = 'none';
+        }
+
+        // 삭제 모달 열기
+        function openDeleteModal() {
+            const deleteModal = document.getElementById('deleteModal');
+            deleteModal.style.display = 'block';
+        }
+
+        // 삭제 모달 닫기
+        function closeDeleteModal() {
+            const deleteModal = document.getElementById('deleteModal');
+            deleteModal.style.display = 'none';
+        }
+
+        // 수정된 프로젝트 정보 저장
+        function saveEditedProject() {
+            // TODO: 수정된 정보를 서버로 보내어 프로젝트 정보 업데이트
+            closeEditModal();
+        }
+
+        // 프로젝트 삭제 확인
+        function confirmDeleteProject() {
+            // TODO: 프로젝트 삭제 요청 및 처리
+            closeDeleteModal();
+        }
+
+        // 프로젝트 수정 함수
+        function editProject(projectId) {
+            // TODO: 해당 프로젝트 정보를 가져와서 수정 모달에 표시
+            openEditModal();
+        }
+
+        // 프로젝트 삭제 함수
+        function deleteProject(projectId) {
+            // TODO: 해당 프로젝트 정보를 가져와서 삭제 모달에 표시
+            openDeleteModal();
         }
     </script>
 </body>

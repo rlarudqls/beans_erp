@@ -32,6 +32,9 @@ bootJar {
 tasks.withType(JavaCompile) {
     options.encoding = 'UTF-8'
 }
+tasks.withType(JavaExec) {
+    maxHeapSize = "1024m" // 메모리 크기 조절
+}
 
 dependencyManagement {
     imports {

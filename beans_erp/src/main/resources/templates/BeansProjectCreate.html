@@ -4,7 +4,48 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ERP 프로그램</title>
-    <link rel="stylesheet" href="beans_erp.css">
+    <link rel="stylesheet" href="beans_erp.css"><style>
+    main {
+        padding: 20px;
+        background-color: #f9f9f9;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+        border-radius: 5px;
+    }
+
+    h2 {
+        margin-bottom: 20px;
+    }
+
+    form {
+        max-width: 400px;
+        margin: 0 auto;
+    }
+
+    label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: bold;
+    }
+
+    input,
+    textarea {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+
+    button {
+        background-color: #333;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+</style>
+    
 </head>
 <body>
     <div id="app">
@@ -26,9 +67,27 @@
             </nav>
         </header>
 
-        <main>
+         <main>
             <div id="content">
-                <p>메인 화면 내용</p>
+                <h2>프로젝트 생성</h2>
+                <form id="projectForm">
+                    <label for="projectName">프로젝트 이름</label>
+                    <input type="text" id="projectName" name="projectName" required>
+                    
+                    <label for="projectDescription">프로젝트 설명</label>
+                    <textarea id="projectDescription" name="projectDescription" required></textarea>
+                    
+                    <label for="startDate">시작일</label>
+                    <input type="date" id="startDate" name="startDate" required>
+                    
+                    <label for="endDate">종료일</label>
+                    <input type="date" id="endDate" name="endDate" required>
+                    
+                    <label for="budget">예산</label>
+                    <input type="number" id="budget" name="budget" required>
+                    
+                    <button type="button" id="createProjectBtn">프로젝트 생성</button>
+                </form>
             </div>
         </main>
 
@@ -74,6 +133,43 @@
                     console.error('Error loading page:', error);
                 });
         }
+    </script> 
+    <script>
+    const createProjectBtn = document.getElementById('createProjectBtn');
+    createProjectBtn.addEventListener('click', () => {
+        const projectName = document.getElementById('projectName').value;
+        const projectDescription = document.getElementById('projectDescription').value;
+        const startDate = document.getElementById('startDate').value;
+        const endDate = document.getElementById('endDate').value;
+        const budget = document.getElementById('budget').value;
+
+        const projectData = {
+            projectName,
+            projectDescription,
+            startDate,
+            endDate,
+            budget
+        };
+
+        fetch('/api/createProject', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(projectData)
+        })
+        .then(response => response.json())
+        .then(data => {
+            // 생성 완료 후 동작
+            console.log(data.message);
+
+            // 생성 완료 후 BeansProjectManagement 화면으로 이동
+            window.location.href = '/BeansProjectManagement';
+        })
+        .catch(error => {
+            console.error('Error creating project:', error);
+        });
+    });
     </script>
 </body>
 </html>

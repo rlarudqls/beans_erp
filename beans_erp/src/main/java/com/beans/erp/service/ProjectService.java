@@ -1,13 +1,11 @@
 package com.beans.erp.service;
 
-import java.util.List;
-
-//com.beans.erp.service.ProjectService
-
 import com.beans.erp.model.Project;
 
+import java.util.List;
+
 public interface ProjectService {
- void saveProject(Project project);
- List<Project> getAllProjects();
- // 다른 메서드들...
+    List<Project> getAllProjects();
+    // 기타 메서드...
+    void saveProject(Project project);
 }

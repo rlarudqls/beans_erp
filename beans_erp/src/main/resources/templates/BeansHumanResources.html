@@ -1,10 +1,98 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ERP 프로그램</title>
     <link rel="stylesheet" href="beans_erp.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+        #app {
+            background-color: #fff;
+            margin: 20px;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #ccc;
+            margin-bottom: 20px;
+        }
+        h1 {
+            font-size: 24px;
+            margin: 0;
+        }
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+        nav ul li {
+            margin-right: 20px;
+        }
+        nav ul li a {
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+        }
+        main table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        th, td {
+            border: 1px solid #ccc;
+            padding: 8px;
+            text-align: center;
+        }
+        th {
+            background-color: #f0f0f0;
+        }
+        h3 {
+            font-size: 20px;
+            margin: 20px 0 10px;
+        }
+        form div {
+            margin-bottom: 10px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input[type="text"], input[type="number"] {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button[type="submit"] {
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 8px 15px;
+            cursor: pointer;
+        }
+        button[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+        footer {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 14px;
+            color: #777;
+        }
+    </style>
 </head>
 <body>
     <div id="app">
@@ -27,9 +115,49 @@
         </header>
 
         <main>
-            <div id="content">
-                <p>메인 화면 내용</p>
-            </div>
+            <table border="1">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>지원자 이름</th>
+                    <th>지원직무</th>
+                    <th>나이</th>
+                    <th>동작</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>kim</td>
+                    <td>김경빈</td>
+                    <td>ERP 웹백엔드 개발자</td>
+                    <td>1999.09.27</td>
+                    <td>
+                        <a href="#">지원수락</a> |
+                        <a href="#">지원대기</a> |
+                        <a href="#">지원삭제</a>
+                    </td>
+                </tr>
+                <!-- 나머지 주문 데이터 추가 -->
+                </tbody>
+            </table>
+            <h3>새 인력 추가</h3>
+            <form action="#" method="post">
+                <div>
+                    <label for="customerName">신입사원:</label>
+                    <input type="text" id="customerName" name="customerName" required>
+                </div>
+                <div>
+                    <label for="product">이름:</label>
+                    <input type="text" id="product" name="product" required>
+                </div>
+                <div>
+                    <label for="quantity">인원:</label>
+                    <input type="number" id="quantity" name="quantity" required>
+                </div>
+                <div>
+                    <button type="submit">주문 추가</button>
+                </div>
+            </form>
         </main>
 
         <footer>
@@ -71,7 +199,7 @@
                     content.innerHTML = data;
                 })
                 .catch(error => {
-                    console.error('Error loading page:', error);
+                    console.error('페이지 로딩 에러:', error);
                 });
         }
     </script>

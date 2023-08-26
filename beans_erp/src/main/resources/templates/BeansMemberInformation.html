@@ -12,24 +12,28 @@
             <h1>ERP 프로그램</h1>
             <nav>
                 <ul id="menuList">
-                    <li><a href="/home">홈</a></li>
-                    <li><a href="/BeansOrderManagement">주문 관리</a></li>
-                    <li><a href="/BeansInventoryLogistics">재고 및 물류</a></li>
-                    <li><a href="/BeansHumanResources">인력 및 인사</a></li>
-                    <li><a href="/BeansAccountingFinance">회계 및 재무</a></li>
-                    <li><a href="/BeansProjectManagement">프로젝트 관리</a></li>
-                    <li><a href="/BeansProjectCreate">프로젝트 생성</a></li>
-                    <li><a href="/BeansDocumentManagement">문서 관리</a></li>
-                    <li><a href="/BeansNotifications">알림</a></li>
-                    <li><a href="/BeansMemberInformation">회원정보</a></li>
+                    <li><a href="/home" data-page="home">홈</a></li>
+                    <li><a href="/BeansOrderManagement" data-page="BeansOrderManagement">주문 관리</a></li>
+                    <li><a href="/BeansInventoryLogistics" data-page="BeansInventoryLogistics">재고 및 물류</a></li>
+                    <li><a href="/BeansHumanResources" data-page="BeansHumanResources">인력 및 인사</a></li>
+                    <li><a href="/BeansAccountingFinance" data-page="BeansAccountingFinance">회계 및 재무</a></li>
+                    <li><a href="/BeansProjectManagement" data-page="BeansProjectManagement">프로젝트 관리</a></li>
+                    <li><a href="/BeansProjectCreate" data-page="BeansProjectCreate">프로젝트 생성</a></li>
+                    <li><a href="/BeansDocumentManagement" data-page="BeansDocumentManagement">문서 관리</a></li>
+                    <li><a href="/BeansNotifications" data-page="BeansNotifications">알림</a></li>
+                    <li><a href="/BeansMemberInformation" data-page="BeansMemberInformation">회원정보</a></li>
                 </ul>
             </nav>
         </header>
 
         <main>
             <div id="content">
-                <p>메인 화면 내용</p>
-            </div>
+    <h1>회원 정보</h1>
+    <p>사용자 이름: 김경빈</p>
+    <p>사용자 아이디: kim<span id="username"></span></p>
+    <p>이메일: kkb3431@gmail.com<span id="email"></span></p>
+	<p>사용자 비밀번호: 1234</p>
+	</div>
         </main>
 
         <footer>
@@ -40,6 +44,8 @@
     <script>
         const menuList = document.getElementById('menuList');
         const content = document.getElementById('content');
+        const usernameSpan = document.getElementById('username');
+        const emailSpan = document.getElementById('email');
 
         menuList.addEventListener('click', (event) => {
             const clickedItem = event.target.dataset.page;
@@ -51,15 +57,16 @@
 
         function getPagePath(pageName) {
             const pagePaths = {
-                '주문 관리': '/BeansOrderManagement',
-                '재고 및 물류': '/BeansInventoryLogistics',
-                '인력 및 인사': '/BeansHumanResources',
-                '회계 및 재무': '/BeansAccountingFinance',
-                '프로젝트 관리': '/BeansProjectManagement',
-                '프로젝트 생성': '/BeansProjectCreate',
-                '문서 관리': '/BeansDocumentManagement',
-                '알림': '/BeansNotifications',
-                '회원정보': '/BeansMemberInformation'
+                'home': '/home',
+                'BeansOrderManagement': '/BeansOrderManagement',
+                'BeansInventoryLogistics': '/BeansInventoryLogistics',
+                'BeansHumanResources': '/BeansHumanResources',
+                'BeansAccountingFinance': '/BeansAccountingFinance',
+                'BeansProjectManagement': '/BeansProjectManagement',
+                'BeansProjectCreate': '/BeansProjectCreate',
+                'BeansDocumentManagement': '/BeansDocumentManagement',
+                'BeansNotifications': '/BeansNotifications',
+                'BeansMemberInformation': '/BeansMemberInformation'
             };
             return pagePaths[pageName] || '';
         }
@@ -69,11 +76,45 @@
                 .then(response => response.text())
                 .then(data => {
                     content.innerHTML = data;
+                    const pageName = getPageNameFromURL(pageURL);
+                    if (pageName === 'BeansMemberInformation') {
+                        fetchUserData();
+                    }
                 })
                 .catch(error => {
                     console.error('Error loading page:', error);
                 });
         }
+
+        function getPageNameFromURL(url) {
+            return url.split('/').pop();
+        }
+
+        function fetchUserData() {
+            fetch('/api/users')
+                .then(response => response.json())
+                .then(data => {
+                    usernameSpan.textContent = data.username;
+                    emailSpan.textContent = data.email;
+
+                    // 추가: 사용자 정보를 가져와서 화면에 표시
+                    fetch('/api/getLoggedInUser')
+                        .then(response => response.json())
+                        .then(user => {
+                            const username = user.username;
+                            const email = user.email;
+                            document.getElementById('username').textContent = username;
+                            document.getElementById('email').textContent = email;
+                        })
+                        .catch(error => {
+                            console.error('Error fetching user data:', error);
+                        });
+                })
+                .catch(error => {
+                    console.error('Error fetching user data:', error);
+                });
+        } // 페이지 로드 시 사용자 정보 가져오도록 추가
+        fetchUserData();
     </script>
 </body>
 </html>

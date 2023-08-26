@@ -3,12 +3,77 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>재고 및 물류 이미지 설명</title>
+    <title>ERP 프로그램</title>
+    <link rel="stylesheet" href="beans_erp.css">
 </head>
 <body>
-    <h1>재고 이미지 설명</h1>
-    <p>이 페이지에서는 회사 로고에 대한 설명을 제공합니다.</p>
-    <img src="/kkbERP_logo.png" alt="회사 로고">
-    <p>회사 로고는 회사의 브랜드 아이덴티티를 나타내는 중요한 요소입니다. 로고는 회사의 가치, 목표 및 이미지를 대표하는 역할을 합니다.</p>
+    <div id="app">
+        <header>
+            <h1>ERP 프로그램</h1>
+            <nav>
+                <ul id="menuList">
+                    <li><a href="/home">홈</a></li>
+                    <li><a href="/BeansOrderManagement">주문 관리</a></li>
+                    <li><a href="/BeansInventoryLogistics">재고 및 물류</a></li>
+                    <li><a href="/BeansHumanResources">인력 및 인사</a></li>
+                    <li><a href="/BeansAccountingFinance">회계 및 재무</a></li>
+                    <li><a href="/BeansProjectManagement">프로젝트 관리</a></li>
+                    <li><a href="/BeansProjectCreate">프로젝트 생성</a></li>
+                    <li><a href="/BeansDocumentManagement">문서 관리</a></li>
+                    <li><a href="/BeansNotifications">알림</a></li>
+                    <li><a href="/BeansMemberInformation">회원정보</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <main>
+            <div id="content">
+                <p>메인 화면 내용</p>
+            </div>
+        </main>
+
+        <footer>
+            <p>&copy; 2023 beans_ERP 프로그램에 오신 것을 환영합니다.</p>
+        </footer>
+    </div>
+
+    <script>
+        const menuList = document.getElementById('menuList');
+        const content = document.getElementById('content');
+
+        menuList.addEventListener('click', (event) => {
+            const clickedItem = event.target.dataset.page;
+            if (clickedItem) {
+                const pageURL = '/beans_erp' + getPagePath(clickedItem);
+                loadPage(pageURL);
+            }
+        });
+
+        function getPagePath(pageName) {
+            const pagePaths = {
+                '주문 관리': '/BeansOrderManagement',
+                '재고 및 물류': '/BeansInventoryLogistics',
+                '인력 및 인사': '/BeansHumanResources',
+                '회계 및 재무': '/BeansAccountingFinance',
+                '프로젝트 관리': '/BeansProjectManagement',
+                '프로젝트 생성': '/BeansProjectCreate',
+                '문서 관리': '/BeansDocumentManagement',
+                '알림': '/BeansNotifications',
+                '회원정보': '/BeansMemberInformation'
+            };
+            return pagePaths[pageName] || '';
+        }
+
+        function loadPage(pageURL) {
+            fetch(pageURL)
+                .then(response => response.text())
+                .then(data => {
+                    content.innerHTML = data;
+                })
+                .catch(error => {
+                    console.error('Error loading page:', error);
+                });
+        }
+    </script>
 </body>
 </html>

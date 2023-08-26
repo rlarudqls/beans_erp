@@ -9,11 +9,6 @@ public class BeansErpController {
 
     @GetMapping("/home")
     public String redirectToHomePage() {
-        return "redirect:/BeansHome";
-    }
-
-    @GetMapping("/BeansHome")
-    public String showBeansHome(Model model) {
         return "BeansHome";
     }
 
@@ -42,16 +37,16 @@ public class BeansErpController {
         return "BeansProjectManagement";
     }
 
-    @GetMapping("/BeansReportingAnalysis")
-    public String showReportingAnalysis(Model model) {
-        return "BeansReportingAnalysis";
+    @GetMapping("/BeansProjectCreate")
+    public String showProjectCreate(Model model) {
+        return "BeansProjectCreate";
     }
-
+    
     @GetMapping("/BeansDocumentManagement")
     public String showDocumentManagement(Model model) {
         return "BeansDocumentManagement";
     }
-
+    
     @GetMapping("/BeansNotifications")
     public String showNotifications(Model model) {
         return "BeansNotifications";

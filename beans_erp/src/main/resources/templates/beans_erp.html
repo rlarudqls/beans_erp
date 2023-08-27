@@ -1,16 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ERP 프로그램</title>
-    <link rel="stylesheet" href="beans_erp.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ERP 프로그램</title>
+<link rel="stylesheet" href="beans_erp.css">
 </head>
 <body>
-    <div id="app">
-    <style>
-/* 추가적인 스타일링을 위한 CSS 코드 */
-/* 예: 이미지 중앙 정렬 */
+	<div id="app">
+		<style>
+/* 이미지 중앙 정렬 */
 .logo-container {
 	text-align: center;
 	margin-top: 20px;
@@ -22,44 +21,44 @@
 	margin: 0 auto;
 	text-align: center;
 	padding: 20px;
-	font-size: 25px; /* 글씨 크기 조정 */
+	font-size: 25px;
 }
 </style>
-        <header>
-            <h1>ERP 프로그램</h1>
-            <nav>
-                <ul id="menuList">
-                    <li><a href="/home">홈</a></li>
-                    <li><a href="/BeansOrderManagement">주문 관리</a></li>
-                    <li><a href="/BeansInventoryLogistics">재고 및 물류</a></li>
-                    <li><a href="/BeansHumanResources">인력 및 인사</a></li>
-                    <li><a href="/BeansAccountingFinance">회계 및 재무</a></li>
-                    <li><a href="/BeansProjectManagement">프로젝트 관리</a></li>
-                    <li><a href="/BeansProjectCreate">프로젝트 생성</a></li>
-                    <li><a href="/BeansDocumentManagement">문서 관리</a></li>
-                    <li><a href="/BeansNotifications">알림</a></li>
-                    <li><a href="/BeansMemberInformation">회원정보</a></li>
-                </ul>
-            </nav>
-        </header>
+		<header>
+			<h1>ERP 프로그램</h1>
+			<nav>
+				<ul id="menuList">
+					<li><a href="/home">홈</a></li>
+					<li><a href="/BeansOrderManagement">주문 관리</a></li>
+					<li><a href="/BeansInventoryLogistics">재고 및 물류</a></li>
+					<li><a href="/BeansHumanResources">인력 및 인사</a></li>
+					<li><a href="/BeansAccountingFinance">회계 및 재무</a></li>
+					<li><a href="/BeansProjectManagement">프로젝트 관리</a></li>
+					<li><a href="/BeansProjectCreate">프로젝트 생성</a></li>
+					<li><a href="/BeansDocumentManagement">문서 관리</a></li>
+					<li><a href="/BeansNotifications">알림</a></li>
+					<li><a href="/BeansMemberInformation">회원정보</a></li>
+				</ul>
+			</nav>
+		</header>
 
-       <main>
-	<h1>회사 소개</h1>
-		<div class="logo-container">
-			<img src="/kkbERP_logo.png" alt="회사 로고">
-		</div>
-		<div class="intro-container">
-			<p>빈스ERP 프로젝트에 오신 것을 환영합니다. [BETA]</p>
-		</div>
-	</main>
+		<main>
+			<h1>회사 소개</h1>
+			<div class="logo-container">
+				<img src="/kkbERP_logo.png" alt="회사 로고">
+			</div>
+			<div class="intro-container">
+				<p>빈스ERP 프로젝트에 오신 것을 환영합니다. [BETA]</p>
+			</div>
+		</main>
 
 
-        <footer>
-            <p>&copy; 2023 beans_ERP 프로그램에 오신 것을 환영합니다.</p>
-        </footer>
-    </div>
+		<footer>
+			<p>&copy; 2023 beans_ERP 프로그램에 오신 것을 환영합니다.</p>
+		</footer>
+	</div>
 
-    <script>
+	<script>
         const menuList = document.getElementById('menuList');
         const content = document.getElementById('content');
 

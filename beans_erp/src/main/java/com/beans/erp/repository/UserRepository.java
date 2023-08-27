@@ -6,10 +6,9 @@ import com.beans.erp.model.User;
 
 public interface UserRepository extends JpaRepository<User, Long> {
 
-    User findByUsernameAndPassword(String username, String password);
+	User findByUsernameAndPassword(String username, String password);
 
-    User findByUsername(String username);
+	User findByUsername(String username);
 
-    // 이 부분을 추가
-    User findByEmail(String email);
+	User findByEmail(String email);
 }

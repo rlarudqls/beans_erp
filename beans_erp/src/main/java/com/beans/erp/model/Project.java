@@ -9,73 +9,73 @@ import java.time.LocalDate;
 
 @Entity
 public class Project {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    
-    private String projectName;
-    private String projectDescription;
-    private LocalDate startDate;
-    private LocalDate endDate;
-    private BigDecimal budget;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 
-    // 생성자, getter, setter 메서드
-    public Project() {
-    }
+	private String projectName;
+	private String projectDescription;
+	private LocalDate startDate;
+	private LocalDate endDate;
+	private BigDecimal budget;
 
-    public Project(String projectName, String projectDescription, LocalDate startDate, LocalDate endDate, BigDecimal budget) {
-        this.projectName = projectName;
-        this.projectDescription = projectDescription;
-        this.startDate = startDate;
-        this.endDate = endDate;
-        this.budget = budget;
-    }
+	public Project() {
+	}
 
-    public Long getId() {
-        return id;
-    }
+	public Project(String projectName, String projectDescription, LocalDate startDate, LocalDate endDate,
+			BigDecimal budget) {
+		this.projectName = projectName;
+		this.projectDescription = projectDescription;
+		this.startDate = startDate;
+		this.endDate = endDate;
+		this.budget = budget;
+	}
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+	public Long getId() {
+		return id;
+	}
 
-    public String getProjectName() {
-        return projectName;
-    }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-    public void setProjectName(String projectName) {
-        this.projectName = projectName;
-    }
+	public String getProjectName() {
+		return projectName;
+	}
 
-    public String getProjectDescription() {
-        return projectDescription;
-    }
+	public void setProjectName(String projectName) {
+		this.projectName = projectName;
+	}
 
-    public void setProjectDescription(String projectDescription) {
-        this.projectDescription = projectDescription;
-    }
+	public String getProjectDescription() {
+		return projectDescription;
+	}
 
-    public LocalDate getStartDate() {
-        return startDate;
-    }
+	public void setProjectDescription(String projectDescription) {
+		this.projectDescription = projectDescription;
+	}
 
-    public void setStartDate(LocalDate startDate) {
-        this.startDate = startDate;
-    }
+	public LocalDate getStartDate() {
+		return startDate;
+	}
 
-    public LocalDate getEndDate() {
-        return endDate;
-    }
+	public void setStartDate(LocalDate startDate) {
+		this.startDate = startDate;
+	}
 
-    public void setEndDate(LocalDate endDate) {
-        this.endDate = endDate;
-    }
+	public LocalDate getEndDate() {
+		return endDate;
+	}
 
-    public BigDecimal getBudget() {
-        return budget;
-    }
+	public void setEndDate(LocalDate endDate) {
+		this.endDate = endDate;
+	}
 
-    public void setBudget(BigDecimal budget) {
-        this.budget = budget;
-    }
+	public BigDecimal getBudget() {
+		return budget;
+	}
+
+	public void setBudget(BigDecimal budget) {
+		this.budget = budget;
+	}
 }

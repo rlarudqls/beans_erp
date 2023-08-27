@@ -1,5 +1,3 @@
-// src/main/java/com/beans/erp/controller/DocumentController.java
-
 package com.beans.erp.controller;
 
 import com.beans.erp.model.Document;
@@ -13,32 +11,30 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/documents")
 public class BeansDocumentController {
 
-    @Autowired
-    private DocumentService documentService;
+	@Autowired
+	private DocumentService documentService;
 
-    @GetMapping
-    public String listDocuments(Model model) {
-        model.addAttribute("documents", documentService.getAllDocuments());
-        return "documentList";
-    }
+	@GetMapping
+	public String listDocuments(Model model) {
+		model.addAttribute("documents", documentService.getAllDocuments());
+		return "documentList";
+	}
 
-    @GetMapping("/{id}")
-    public String viewDocument(@PathVariable Long id, Model model) {
-        model.addAttribute("document", documentService.getDocumentById(id));
-        return "documentView";
-    }
+	@GetMapping("/{id}")
+	public String viewDocument(@PathVariable Long id, Model model) {
+		model.addAttribute("document", documentService.getDocumentById(id));
+		return "documentView";
+	}
 
-    @PostMapping
-    public String createDocument(Document document) {
-        documentService.saveDocument(document);
-        return "redirect:/documents";
-    }
+	@PostMapping
+	public String createDocument(Document document) {
+		documentService.saveDocument(document);
+		return "redirect:/documents";
+	}
 
-    @DeleteMapping("/{id}")
-    public String deleteDocument(@PathVariable Long id) {
-        documentService.deleteDocument(id);
-        return "redirect:/documents";
-    }
-
-    // ... More CRUD operations ...
+	@DeleteMapping("/{id}")
+	public String deleteDocument(@PathVariable Long id) {
+		documentService.deleteDocument(id);
+		return "redirect:/documents";
+	}
 }

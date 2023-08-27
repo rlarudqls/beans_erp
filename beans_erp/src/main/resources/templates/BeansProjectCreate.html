@@ -1,102 +1,99 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ERP 프로그램</title>
-    <link rel="stylesheet" href="beans_erp.css"><style>
-    main {
-        padding: 20px;
-        background-color: #f9f9f9;
-        box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-        border-radius: 5px;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ERP 프로그램</title>
+<link rel="stylesheet" href="beans_erp.css">
+<style>
+main {
+	padding: 20px;
+	background-color: #f9f9f9;
+	box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+	border-radius: 5px;
+}
 
-    h2 {
-        margin-bottom: 20px;
-    }
+h2 {
+	margin-bottom: 20px;
+}
 
-    form {
-        max-width: 400px;
-        margin: 0 auto;
-    }
+form {
+	max-width: 400px;
+	margin: 0 auto;
+}
 
-    label {
-        display: block;
-        margin-bottom: 5px;
-        font-weight: bold;
-    }
+label {
+	display: block;
+	margin-bottom: 5px;
+	font-weight: bold;
+}
 
-    input,
-    textarea {
-        width: 100%;
-        padding: 10px;
-        margin-bottom: 10px;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-    }
+input, textarea {
+	width: 100%;
+	padding: 10px;
+	margin-bottom: 10px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+}
 
-    button {
-        background-color: #333;
-        color: white;
-        border: none;
-        padding: 10px 20px;
-        cursor: pointer;
-        border-radius: 5px;
-    }
+button {
+	background-color: #333;
+	color: white;
+	border: none;
+	padding: 10px 20px;
+	cursor: pointer;
+	border-radius: 5px;
+}
 </style>
-    
+
 </head>
 <body>
-    <div id="app">
-        <header>
-            <h1>ERP 프로그램</h1>
-            <nav>
-                <ul id="menuList">
-                    <li><a href="/home">홈</a></li>
-                    <li><a href="/BeansOrderManagement">주문 관리</a></li>
-                    <li><a href="/BeansInventoryLogistics">재고 및 물류</a></li>
-                    <li><a href="/BeansHumanResources">인력 및 인사</a></li>
-                    <li><a href="/BeansAccountingFinance">회계 및 재무</a></li>
-                    <li><a href="/BeansProjectManagement">프로젝트 관리</a></li>
-                    <li><a href="/BeansProjectCreate">프로젝트 생성</a></li>
-                    <li><a href="/BeansDocumentManagement">문서 관리</a></li>
-                    <li><a href="/BeansNotifications">알림</a></li>
-                    <li><a href="/BeansMemberInformation">회원정보</a></li>
-                </ul>
-            </nav>
-        </header>
+	<div id="app">
+		<header>
+			<h1>ERP 프로그램</h1>
+			<nav>
+				<ul id="menuList">
+					<li><a href="/home">홈</a></li>
+					<li><a href="/BeansOrderManagement">주문 관리</a></li>
+					<li><a href="/BeansInventoryLogistics">재고 및 물류</a></li>
+					<li><a href="/BeansHumanResources">인력 및 인사</a></li>
+					<li><a href="/BeansAccountingFinance">회계 및 재무</a></li>
+					<li><a href="/BeansProjectManagement">프로젝트 관리</a></li>
+					<li><a href="/BeansProjectCreate">프로젝트 생성</a></li>
+					<li><a href="/BeansDocumentManagement">문서 관리</a></li>
+					<li><a href="/BeansNotifications">알림</a></li>
+					<li><a href="/BeansMemberInformation">회원정보</a></li>
+				</ul>
+			</nav>
+		</header>
 
-         <main>
-            <div id="content">
-                <h2>프로젝트 생성</h2>
-                <form id="projectForm">
-                    <label for="projectName">프로젝트 이름</label>
-                    <input type="text" id="projectName" name="projectName" required>
-                    
-                    <label for="projectDescription">프로젝트 설명</label>
-                    <textarea id="projectDescription" name="projectDescription" required></textarea>
-                    
-                    <label for="startDate">시작일</label>
-                    <input type="date" id="startDate" name="startDate" required>
-                    
-                    <label for="endDate">종료일</label>
-                    <input type="date" id="endDate" name="endDate" required>
-                    
-                    <label for="budget">예산</label>
-                    <input type="number" id="budget" name="budget" required>
-                    
-                    <button type="button" id="createProjectBtn">프로젝트 생성</button>
-                </form>
-            </div>
-        </main>
+		<main>
+			<div id="content">
+				<h2>프로젝트 생성</h2>
+				<form id="projectForm">
+					<label for="projectName">프로젝트 이름</label> <input type="text"
+						id="projectName" name="projectName" required> <label
+						for="projectDescription">프로젝트 설명</label>
+					<textarea id="projectDescription" name="projectDescription"
+						required></textarea>
 
-        <footer>
-            <p>&copy; 2023 beans_ERP 프로그램에 오신 것을 환영합니다.</p>
-        </footer>
-    </div>
+					<label for="startDate">시작일</label> <input type="date"
+						id="startDate" name="startDate" required> <label
+						for="endDate">종료일</label> <input type="date" id="endDate"
+						name="endDate" required> <label for="budget">예산</label> <input
+						type="number" id="budget" name="budget" required>
 
-    <script>
+					<button type="button" id="createProjectBtn">프로젝트 생성</button>
+				</form>
+			</div>
+		</main>
+
+		<footer>
+			<p>&copy; 2023 beans_ERP 프로그램에 오신 것을 환영합니다.</p>
+		</footer>
+	</div>
+
+	<script>
         const menuList = document.getElementById('menuList');
         const content = document.getElementById('content');
 
@@ -133,8 +130,8 @@
                     console.error('Error loading page:', error);
                 });
         }
-    </script> 
-    <script>
+    </script>
+	<script>
     const createProjectBtn = document.getElementById('createProjectBtn');
     createProjectBtn.addEventListener('click', () => {
         const projectName = document.getElementById('projectName').value;

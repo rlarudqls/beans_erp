@@ -1,146 +1,161 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ERP 프로그램</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
-            margin: 0;
-            padding: 0;
-        }
-        #app {
-            background-color: #fff;
-            margin: 20px;
-            padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding-bottom: 10px;
-            border-bottom: 1px solid #ccc;
-            margin-bottom: 20px;
-        }
-        h1 {
-            font-size: 24px;
-            margin: 0;
-        }
-        nav ul {
-            list-style: none;
-            margin: 0;
-            padding: 0;
-            display: flex;
-        }
-        nav ul li {
-            margin-right: 20px;
-        }
-        nav ul li a {
-            text-decoration: none;
-            color: #333;
-            font-weight: bold;
-        }
-        footer {
-            margin-top: 20px;
-            text-align: center;
-            font-size: 14px;
-            color: #777;
-        }
-        /* 알림 메뉴 스타일 */
-        .notification-badge {
-            position: relative;
-        }
-        .notification-badge::after {
-            content: attr(data-count);
-            position: absolute;
-            top: -8px;
-            right: -8px;
-            background-color: #007BFF;
-            color: #fff;
-            border-radius: 50%;
-            padding: 2px 6px;
-            font-size: 12px;
-        }
-        .notification-menu {
-            position: relative;
-            cursor: pointer;
-        }
-        .notification-menu ul {
-            list-style: none;
-            margin: 0;
-            padding: 0;
-            position: absolute;
-            top: 30px;
-            right: 0;
-            background-color: #fff;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            display: none;
-            border-radius: 5px;
-            z-index: 1;
-        }
-        .notification-menu:hover ul {
-            display: block;
-        }
-        .notification-menu ul li {
-            padding: 10px;
-            border-bottom: 1px solid #eee;
-        }
-        .notification-menu ul li:last-child {
-            border-bottom: none;
-        }
-        .notification-menu ul li a {
-            text-decoration: none;
-            color: #333;
-            font-weight: bold;
-            display: block;
-            transition: background-color 0.2s;
-        }
-        .notification-menu ul li a:hover {
-            background-color: #f0f0f0;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ERP 프로그램</title>
+<style>
+body {
+	font-family: Arial, sans-serif;
+	background-color: #f0f0f0;
+	margin: 0;
+	padding: 0;
+}
+
+#app {
+	background-color: #fff;
+	margin: 20px;
+	padding: 20px;
+	border-radius: 5px;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding-bottom: 10px;
+	border-bottom: 1px solid #ccc;
+	margin-bottom: 20px;
+}
+
+h1 {
+	font-size: 24px;
+	margin: 0;
+}
+
+nav ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	display: flex;
+}
+
+nav ul li {
+	margin-right: 20px;
+}
+
+nav ul li a {
+	text-decoration: none;
+	color: #333;
+	font-weight: bold;
+}
+
+footer {
+	margin-top: 20px;
+	text-align: center;
+	font-size: 14px;
+	color: #777;
+}
+/* 알림 메뉴 스타일 */
+.notification-badge {
+	position: relative;
+}
+
+.notification-badge::after {
+	content: attr(data-count);
+	position: absolute;
+	top: -8px;
+	right: -8px;
+	background-color: #007BFF;
+	color: #fff;
+	border-radius: 50%;
+	padding: 2px 6px;
+	font-size: 12px;
+}
+
+.notification-menu {
+	position: relative;
+	cursor: pointer;
+}
+
+.notification-menu ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	position: absolute;
+	top: 30px;
+	right: 0;
+	background-color: #fff;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+	display: none;
+	border-radius: 5px;
+	z-index: 1;
+}
+
+.notification-menu:hover ul {
+	display: block;
+}
+
+.notification-menu ul li {
+	padding: 10px;
+	border-bottom: 1px solid #eee;
+}
+
+.notification-menu ul li:last-child {
+	border-bottom: none;
+}
+
+.notification-menu ul li a {
+	text-decoration: none;
+	color: #333;
+	font-weight: bold;
+	display: block;
+	transition: background-color 0.2s;
+}
+
+.notification-menu ul li a:hover {
+	background-color: #f0f0f0;
+}
+</style>
 </head>
 <body>
-    <div id="app">
-        <header>
-            <h1>ERP 프로그램</h1>
-            <nav>
-                <ul id="menuList">
-                    <li><a href="/home">홈</a></li>
-                    <li><a href="/BeansOrderManagement">주문 관리</a></li>
-                    <li><a href="/BeansInventoryLogistics">재고 및 물류</a></li>
-                    <li><a href="/BeansHumanResources">인력 및 인사</a></li>
-                    <li><a href="/BeansAccountingFinance">회계 및 재무</a></li>
-                    <li><a href="/BeansProjectManagement">프로젝트 관리</a></li>
-                    <li><a href="/BeansProjectCreate">프로젝트 생성</a></li>
-                    <li><a href="/BeansDocumentManagement">문서 관리</a></li>
-                    <li class="notification-badge" data-count="3">
-                        <div class="notification-menu">
-                            <a href="#">알림</a>
-                            <ul>
-                                <li><a href="#">강팀장</a></li>
-                                <li><a href="#">정부장</a></li>
-                                <li><a href="#">김대리</a></li>
-                            </ul>
-                        </div>
-                    </li>
-                    <li><a href="/BeansMemberInformation">회원정보</a></li>
-                </ul>
-            </nav>
-        </header>
+	<div id="app">
+		<header>
+			<h1>ERP 프로그램</h1>
+			<nav>
+				<ul id="menuList">
+					<li><a href="/home">홈</a></li>
+					<li><a href="/BeansOrderManagement">주문 관리</a></li>
+					<li><a href="/BeansInventoryLogistics">재고 및 물류</a></li>
+					<li><a href="/BeansHumanResources">인력 및 인사</a></li>
+					<li><a href="/BeansAccountingFinance">회계 및 재무</a></li>
+					<li><a href="/BeansProjectManagement">프로젝트 관리</a></li>
+					<li><a href="/BeansProjectCreate">프로젝트 생성</a></li>
+					<li><a href="/BeansDocumentManagement">문서 관리</a></li>
+					<li class="notification-badge" data-count="3">
+						<div class="notification-menu">
+							<a href="#">알림</a>
+							<ul>
+								<li><a href="#">강팀장</a></li>
+								<li><a href="#">정부장</a></li>
+								<li><a href="#">김대리</a></li>
+							</ul>
+						</div>
+					</li>
+					<li><a href="/BeansMemberInformation">회원정보</a></li>
+				</ul>
+			</nav>
+		</header>
 
-        <!-- 페이지의 내용이 들어갈 부분 -->
+		<!-- 페이지의 내용이 들어갈 부분 -->
 
-        <footer>
-            <p>&copy; 2023 beans_ERP 프로그램에 오신 것을 환영합니다.</p>
-        </footer>
-    </div>
+		<footer>
+			<p>&copy; 2023 beans_ERP 프로그램에 오신 것을 환영합니다.</p>
+		</footer>
+	</div>
 
-    <script>
+	<script>
         const menuList = document.getElementById('menuList');
         const content = document.getElementById('content');
 

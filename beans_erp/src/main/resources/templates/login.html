@@ -1,32 +1,33 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Login</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            height: 100vh;
-            margin: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background-color: #f7f7f7;
-        }
-        form {
-            padding: 20px;
-            border: 1px solid #ddd;
-            background-color: #fff;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-    </style>
+<title>Login</title>
+<style>
+body {
+	font-family: Arial, sans-serif;
+	height: 100vh;
+	margin: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: #f7f7f7;
+}
+
+form {
+	padding: 20px;
+	border: 1px solid #ddd;
+	background-color: #fff;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+</style>
 </head>
 <body>
-    <h1>Login</h1>
-    <form action="/login" method="post">
-        <input type="text" name="username" placeholder="Username" required><br>
-        <input type="password" name="password" placeholder="Password" required><br>
-        <button type="submit">Login</button>
-    </form>
-    <p th:text="${error}"></p>
+	<h1>Login</h1>
+	<form action="/login" method="post">
+		<input type="text" name="username" placeholder="Username" required><br>
+		<input type="password" name="password" placeholder="Password" required><br>
+		<button type="submit">Login</button>
+	</form>
+	<p th:text="${error}"></p>
 </body>
 </html>

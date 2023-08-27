@@ -1,5 +1,3 @@
-// src/main/java/com/beans/erp/repository/EmployeeRepository.java
-
 package com.beans.erp.repository;
 
 import com.beans.erp.model.Employee;

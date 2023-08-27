@@ -11,32 +11,30 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/transactions")
 public class BeansFinancialTransactionController {
 
-    @Autowired
-    private FinancialTransactionService transactionService;
+	@Autowired
+	private FinancialTransactionService transactionService;
 
-    @GetMapping
-    public String listTransactions(Model model) {
-        model.addAttribute("transactions", transactionService.getAllTransactions());
-        return "transactionList";
-    }
+	@GetMapping
+	public String listTransactions(Model model) {
+		model.addAttribute("transactions", transactionService.getAllTransactions());
+		return "transactionList";
+	}
 
-    @GetMapping("/{id}")
-    public String viewTransaction(@PathVariable Long id, Model model) {
-        model.addAttribute("transaction", transactionService.getTransactionById(id));
-        return "transactionView";
-    }
+	@GetMapping("/{id}")
+	public String viewTransaction(@PathVariable Long id, Model model) {
+		model.addAttribute("transaction", transactionService.getTransactionById(id));
+		return "transactionView";
+	}
 
-    @PostMapping
-    public String createTransaction(FinancialTransaction transaction) {
-        transactionService.saveTransaction(transaction);
-        return "redirect:/transactions";
-    }
+	@PostMapping
+	public String createTransaction(FinancialTransaction transaction) {
+		transactionService.saveTransaction(transaction);
+		return "redirect:/transactions";
+	}
 
-    @DeleteMapping("/{id}")
-    public String deleteTransaction(@PathVariable Long id) {
-        transactionService.deleteTransaction(id);
-        return "redirect:/transactions";
-    }
-
-    // ... More CRUD operations ...
+	@DeleteMapping("/{id}")
+	public String deleteTransaction(@PathVariable Long id) {
+		transactionService.deleteTransaction(id);
+		return "redirect:/transactions";
+	}
 }

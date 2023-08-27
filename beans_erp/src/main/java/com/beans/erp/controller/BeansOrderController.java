@@ -11,32 +11,30 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/orders")
 public class BeansOrderController {
 
-    @Autowired
-    private OrderService orderService;
+	@Autowired
+	private OrderService orderService;
 
-    @GetMapping
-    public String listOrders(Model model) {
-        model.addAttribute("orders", orderService.getAllOrders());
-        return "BeansOrderManagement"; // HTML file name for displaying orders
-    }
+	@GetMapping
+	public String listOrders(Model model) {
+		model.addAttribute("orders", orderService.getAllOrders());
+		return "BeansOrderManagement";
+	}
 
-    @GetMapping("/{id}")
-    public String viewOrder(@PathVariable Long id, Model model) {
-        model.addAttribute("order", orderService.getOrderById(id));
-        return "BeansHome";
-    }
+	@GetMapping("/{id}")
+	public String viewOrder(@PathVariable Long id, Model model) {
+		model.addAttribute("order", orderService.getOrderById(id));
+		return "BeansHome";
+	}
 
-    @PostMapping
-    public String createOrder(Order order) {
-        orderService.saveOrder(order);
-        return "redirect:/BeansHome";
-    }
+	@PostMapping
+	public String createOrder(Order order) {
+		orderService.saveOrder(order);
+		return "redirect:/BeansHome";
+	}
 
-    @DeleteMapping("/{id}")
-    public String deleteOrder(@PathVariable Long id) {
-        orderService.deleteOrder(id);
-        return "redirect:/BeansHome";
-    }
-
-    // ... More CRUD operations ...
+	@DeleteMapping("/{id}")
+	public String deleteOrder(@PathVariable Long id) {
+		orderService.deleteOrder(id);
+		return "redirect:/BeansHome";
+	}
 }

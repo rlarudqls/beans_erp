@@ -12,33 +12,33 @@ import javax.servlet.http.HttpSession;
 @Service
 public class UserService {
 
-    @Autowired
-    private UserRepository userRepository;
+	@Autowired
+	private UserRepository userRepository;
 
-    public boolean authenticateUser(String username, String password) {
-        User user = userRepository.findByUsernameAndPassword(username, password);
-        if (user != null) {
-            HttpSession session = getSession();
-            session.setAttribute("userId", user.getId());
-            return true;
-        }
-        return false;
-    }
+	public boolean authenticateUser(String username, String password) {
+		User user = userRepository.findByUsernameAndPassword(username, password);
+		if (user != null) {
+			HttpSession session = getSession();
+			session.setAttribute("userId", user.getId());
+			return true;
+		}
+		return false;
+	}
 
-    public User getLoggedInUser() {
-        Long userId = (Long) getSession().getAttribute("userId");
-        if (userId != null) {
-            return userRepository.findById(userId).orElse(null);
-        }
-        return null;
-    }
+	public User getLoggedInUser() {
+		Long userId = (Long) getSession().getAttribute("userId");
+		if (userId != null) {
+			return userRepository.findById(userId).orElse(null);
+		}
+		return null;
+	}
 
-    public User findByEmail(String email) {
-        return userRepository.findByEmail(email);
-    }
+	public User findByEmail(String email) {
+		return userRepository.findByEmail(email);
+	}
 
-    private HttpSession getSession() {
-        ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
-        return attr.getRequest().getSession(true);
-    }
+	private HttpSession getSession() {
+		ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
+		return attr.getRequest().getSession(true);
+	}
 }

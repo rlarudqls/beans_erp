@@ -8,64 +8,63 @@ import javax.persistence.ManyToOne;
 
 @Entity
 public class TeamMember {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    
-    private String name;
-    private String role;
-    private String tasks;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 
-    @ManyToOne
-    private Project project; // 프로젝트와의 관계
+	private String name;
+	private String role;
+	private String tasks;
 
-    // 생성자, getter, setter 메서드
-    public TeamMember() {
-    }
+	@ManyToOne
+	private Project project;
 
-    public TeamMember(String name, String role, String tasks) {
-        this.name = name;
-        this.role = role;
-        this.tasks = tasks;
-    }
+	public TeamMember() {
+	}
 
-    public Long getId() {
-        return id;
-    }
+	public TeamMember(String name, String role, String tasks) {
+		this.name = name;
+		this.role = role;
+		this.tasks = tasks;
+	}
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+	public Long getId() {
+		return id;
+	}
 
-    public String getName() {
-        return name;
-    }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-    public void setName(String name) {
-        this.name = name;
-    }
+	public String getName() {
+		return name;
+	}
 
-    public String getRole() {
-        return role;
-    }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-    public void setRole(String role) {
-        this.role = role;
-    }
+	public String getRole() {
+		return role;
+	}
 
-    public String getTasks() {
-        return tasks;
-    }
+	public void setRole(String role) {
+		this.role = role;
+	}
 
-    public void setTasks(String tasks) {
-        this.tasks = tasks;
-    }
+	public String getTasks() {
+		return tasks;
+	}
 
-    public Project getProject() {
-        return project;
-    }
+	public void setTasks(String tasks) {
+		this.tasks = tasks;
+	}
 
-    public void setProject(Project project) {
-        this.project = project;
-    }
+	public Project getProject() {
+		return project;
+	}
+
+	public void setProject(Project project) {
+		this.project = project;
+	}
 }

@@ -1,5 +1,3 @@
-// src/main/java/com/beans/erp/service/FinancialTransactionService.java
-
 package com.beans.erp.service;
 
 import com.beans.erp.model.FinancialTransaction;
@@ -12,22 +10,22 @@ import java.util.List;
 @Service
 public class FinancialTransactionService {
 
-    @Autowired
-    private FinancialTransactionRepository financialTransactionRepository;
+	@Autowired
+	private FinancialTransactionRepository financialTransactionRepository;
 
-    public List<FinancialTransaction> getAllTransactions() {
-        return financialTransactionRepository.findAll();
-    }
+	public List<FinancialTransaction> getAllTransactions() {
+		return financialTransactionRepository.findAll();
+	}
 
-    public FinancialTransaction getTransactionById(Long id) {
-        return financialTransactionRepository.findById(id).orElse(null);
-    }
+	public FinancialTransaction getTransactionById(Long id) {
+		return financialTransactionRepository.findById(id).orElse(null);
+	}
 
-    public FinancialTransaction saveTransaction(FinancialTransaction transaction) {
-        return financialTransactionRepository.save(transaction);
-    }
+	public FinancialTransaction saveTransaction(FinancialTransaction transaction) {
+		return financialTransactionRepository.save(transaction);
+	}
 
-    public void deleteTransaction(Long id) {
-        financialTransactionRepository.deleteById(id);
-    }
+	public void deleteTransaction(Long id) {
+		financialTransactionRepository.deleteById(id);
+	}
 }

@@ -1,6 +1,6 @@
 package com.beans.erp.controller;
 
-import com.beans.erp.model.Order;
+import com.beans.erp.model.Order_beans;
 import com.beans.erp.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -27,7 +27,7 @@ public class BeansOrderController {
 	}
 
 	@PostMapping
-	public String createOrder(Order order) {
+	public String createOrder(Order_beans order) {
 		orderService.saveOrder(order);
 		return "redirect:/BeansHome";
 	}
